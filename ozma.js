@@ -532,14 +532,14 @@ function ozma(opt){
         }
 
         if (!_runtime) {
-            var doc = require("jsdom-nogyp").jsdom("<html><head></head><body></body></html>");
+            var doc = require("jsdom").jsdom("<html><head></head><body></body></html>");
             var win = merge({
                 oz: oz,
                 define: oz.define,
                 require: oz.require,
                 console: Object.create(logger),
                 process: process
-            }, doc.createWindow());
+            }, doc.defaultView);
             _runtime = vm.createContext(win);
             _runtime.window = _runtime;
 
